@@ -22,7 +22,8 @@
 <script>
     async function checkAccess() {
         const code = document.getElementById('nodeCode').value;
-       const url = "https://script.google.com/macros/s/AKfycbyajeMPOF5OaD89K4-6xgfn9PS6Uk3ZmRHSOkuLgV3RbHU2CpprsLXQEaJMOrhQj1QD2w/exec";
+        const url = "https://script.google.com/macros/s/AKfycbyajeMPOF5OaD89K4-6xgfn9PS6Uk3ZmRHSOkuLgV3RbHU2CpprsLXQEaJMOrhQj1QD2w/exec";
+        
         let nivel = "Invitado";
         if(code === "SOMBRA2026") nivel = "COMANDANTE";
         else if(code === "NODO01") nivel = "OPERATIVO";
@@ -34,7 +35,8 @@
             alert("ACCESO DENEGADO.");
         }
 
-        await fetch(url_script, { 
+        // Usamos 'url' porque así la llamamos arriba
+        await fetch(url, { 
             method: 'POST', 
             mode: 'no-cors', 
             body: JSON.stringify({codigo: code, nivel: nivel}) 
