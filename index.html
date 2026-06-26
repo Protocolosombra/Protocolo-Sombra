@@ -22,7 +22,68 @@
 <script>
     async function checkAccess() {
         const code = document.getElementById('nodeCode').value;
-        const url = "https://script.google.com/macros/s/AKfycbyajeMPOF5OaD89K4-6xgfn9PS6Uk3ZmRHSOkuLgV3RbHU2CpprsLXQEaJMOrhQj1QD2w/exec";
+        <!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PROTOCOLO SOMBRA | ACCESO</title>
+    <style>
+        body { background: #000; color: #00d4ff; font-family: monospace; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+        .card { background: #0a0a0a; border: 1px solid #00d4ff; padding: 40px; width: 320px; text-align: center; box-shadow: 0 0 15px rgba(0, 212, 255, 0.2); }
+        .hidden { display: none; }
+        input, button { width: 100%; padding: 15px; margin: 10px 0; background: #000; border: 1px solid #444; color: #00d4ff; box-sizing: border-box; }
+        button { background: #00d4ff; color: #000; cursor: pointer; font-weight: bold; }
+        button:hover { background: #fff; }
+        a { color: #666; font-size: 12px; text-decoration: none; display: block; margin-top: 15px; }
+    </style>
+</head>
+<body>
+    <div id="login" class="card">
+        <h1>PROTOCOLO SOMBRA</h1>
+        <p>Identificación requerida</p>
+        <input type="text" id="code" placeholder="INTRODUCIR CÓDIGO">
+        <button onclick="auth()">INICIAR SESIÓN</button>
+        <a href="registro.html">Solicitar acceso (Registro)</a>
+    </div>
+
+    <div id="intranet" class="card hidden">
+        <h2>BIENVENIDO</h2>
+        <h1 id="rango" style="color: #fff;"></h1>
+        <hr style="border-color: #333;">
+        <p>Estado del sistema: <strong>EN LÍNEA</strong></p>
+        <p>Conexión segura establecida a la red interna.</p>
+        <button onclick="location.reload()" style="background: #333; color: #fff; margin-top: 20px;">DESCONECTAR</button>
+    </div>
+
+    <script>
+        async function auth() {
+            const code = document.getElementById('code').value;
+            const url = "TU_URL_AQUÍ"; // <-- PEGA TU URL DE GOOGLE SCRIPT AQUÍ
+            
+            let nivel = "";
+            if(code === "SOMBRA2026") nivel = "COMANDANTE";
+            else if(code === "NODO01") nivel = "OPERATIVO";
+
+            if(nivel !== "") {
+                // Ocultar login y mostrar intranet
+                document.getElementById('login').classList.add('hidden');
+                document.getElementById('intranet').classList.remove('hidden');
+                document.getElementById('rango').innerText = nivel;
+                
+                // Enviar registro silencioso a la base de datos
+                await fetch(url, { 
+                    method: 'POST', 
+                    mode: 'no-cors', 
+                    body: JSON.stringify({tipo: "ACCESO", val1: code, val2: nivel}) 
+                });
+            } else { 
+                alert("CÓDIGO INVÁLIDO. ACCESO DENEGADO."); 
+            }
+        }
+    </script>
+</body>
+</html>
         
         let nivel = "Invitado";
         if(code === "SOMBRA2026") nivel = "COMANDANTE";
