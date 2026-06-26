@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>REGISTRO | PROTOCOLO SOMBRA</title>
+    <style>
+        body { background: #050505; color: #fff; font-family: monospace; display: flex; justify-content: center; padding-top: 50px; }
+        .card { border: 1px solid #333; padding: 30px; width: 300px; text-align: center; background: #0a0a0a; }
+        input, select { width: 100%; padding: 10px; margin: 10px 0; background: #000; color: #00d4ff; border: 1px solid #222; }
+        button { background: #fff; width: 100%; padding: 10px; cursor: pointer; font-weight: bold; }
+    </style>
+</head>
+<body>
+<div class="card">
+    <h1>REGISTRO</h1>
+    <input type="text" id="nombre" placeholder="Nombre de Operativo">
+    <select id="avatar">
+        <option value="💀">Calavera (💀)</option>
+        <option value="⚡">Rayo (⚡)</option>
+        <option value="🛡️">Escudo (🛡️)</option>
+        <option value="🦅">Águila (🦅)</option>
+    </select>
+    <button onclick="enviarRegistro()">CONFIRMAR REGISTRO</button>
+</div>
+
+<script>
+    async function enviarRegistro() {
+        const nombre = document.getElementById('nombre').value;
+        const avatar = document.getElementById('avatar').value;
+        const url_script = "TU_ENLACE_AQUÍ"; // PEGA AQUÍ EL MISMO ENLACE QUE USAMOS ANTES
+
+        await fetch(url_script, { 
+            method: 'POST', 
+            mode: 'no-cors', 
+            body: JSON.stringify({tipo: "registro", nombre: nombre, avatar: avatar}) 
+        });
+        alert("Registro enviado, Operativo " + nombre);
+    }
+</script>
+</body>
+</html>
