@@ -23,14 +23,23 @@
     async function checkAccess() {
         const code = document.getElementById('nodeCode').value;
         const url_script = "https://script.google.com/macros/s/AKfycbyV30dS5o4ecTN4IqpUxsdjn_7JM0gE8n97b31QOFTyoL8P-h6dTU3HpTCHw05cAxYiAg/exec";
-        const codigosValidos = ["SOMBRA2026", "NODO01", "ALPHA"];
+        
+        let nivel = "Invitado";
+        if(code === "SOMBRA2026") nivel = "COMANDANTE";
+        else if(code === "NODO01") nivel = "OPERATIVO";
 
-        if (codigosValidos.includes(code)) {
-            await fetch(url_script, { method: 'POST', mode: 'no-cors', body: JSON.stringify({codigo: code, ip: "Acceso Exitoso"}) });
-            alert("Acceso autorizado.");
+        if(nivel !== "Invitado") {
+            alert("Acceso Autorizado: " + nivel);
+            document.body.innerHTML = "<div class='hero-card'><h1>NIVEL: " + nivel + "</h1><p>Sistema operativo.</p></div>";
         } else {
             alert("ACCESO DENEGADO.");
         }
+
+        await fetch(url_script, { 
+            method: 'POST', 
+            mode: 'no-cors', 
+            body: JSON.stringify({codigo: code, nivel: nivel}) 
+        });
     }
 </script>
 </body>
