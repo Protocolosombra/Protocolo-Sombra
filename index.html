@@ -2,14 +2,20 @@
     async function checkAccess() {
         const code = document.getElementById('nodeCode').value;
         const url_script = "https://script.google.com/macros/s/AKfycbyMrz968e8ilKfiIDcfcjyU5k5n3BBrb-LKR4mguzuksJ71w_M35U4eiMaDrAYsldacyg/exec";
+        
+        // --- AQUÍ PONES TUS CÓDIGOS VÁLIDOS ---
+        const codigosValidos = ["SOMBRA2026", "NODO01", "ALPHA"];
+        // --------------------------------------
 
-        if(code !== "") {
+        if (codigosValidos.includes(code)) {
             await fetch(url_script, {
                 method: 'POST',
                 mode: 'no-cors',
-                body: JSON.stringify({codigo: code, ip: "Usuario"})
+                body: JSON.stringify({codigo: code, ip: "Acceso Exitoso"})
             });
-            alert("Protocolo iniciado. Redirigiendo a nodo seguro...");
+            alert("Acceso autorizado. Bienvenido al Protocolo Sombra.");
+        } else {
+            alert("ACCESO DENEGADO: Código no reconocido.");
         }
     }
 </script>
