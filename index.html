@@ -1,20 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PROTOCOLO SOMBRA | ACCESO</title>
+    <style>
+        body, html { margin: 0; padding: 0; height: 100%; font-family: sans-serif; background-color: #050505; display: flex; justify-content: center; align-items: center; }
+        .hero-card { background: rgba(10, 10, 10, 0.85); border: 1px solid #222; padding: 50px; text-align: center; border-radius: 8px; width: 90%; max-width: 400px; }
+        h1 { color: #fff; letter-spacing: 8px; font-size: 28px; margin-bottom: 10px; }
+        input { width: 100%; padding: 15px; margin-bottom: 20px; background: #000; border: 1px solid #444; color: #00d4ff; text-align: center; box-sizing: border-box; }
+        button { width: 100%; padding: 15px; border: none; background: #fff; color: #000; font-weight: bold; cursor: pointer; }
+    </style>
+</head>
+<body>
+<div class="hero-card">
+    <h1>PROTOCOLO SOMBRA</h1>
+    <input type="text" placeholder="CÓDIGO DE NODO" id="nodeCode">
+    <button onclick="checkAccess()">VERIFICAR ACCESO</button>
+</div>
+
 <script>
     async function checkAccess() {
         const code = document.getElementById('nodeCode').value;
         const url_script = "https://script.google.com/macros/s/AKfycbyMrz968e8ilKfiIDcfcjyU5k5n3BBrb-LKR4mguzuksJ71w_M35U4eiMaDrAYsldacyg/exec";
-        
-        // Aquí puedes añadir más códigos separados por comas
         const codigosValidos = ["SOMBRA2026", "NODO01", "ALPHA"];
 
         if (codigosValidos.includes(code)) {
-            await fetch(url_script, {
-                method: 'POST',
-                mode: 'no-cors',
-                body: JSON.stringify({codigo: code, ip: "Acceso Exitoso"})
-            });
-            alert("Acceso autorizado. Bienvenido al Protocolo Sombra.");
+            await fetch(url_script, { method: 'POST', mode: 'no-cors', body: JSON.stringify({codigo: code, ip: "Acceso Exitoso"}) });
+            alert("Acceso autorizado.");
         } else {
-            alert("ACCESO DENEGADO: Código no reconocido.");
+            alert("ACCESO DENEGADO.");
         }
     }
 </script>
+</body>
+</html>
