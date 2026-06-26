@@ -3,9 +3,8 @@
         const code = document.getElementById('nodeCode').value;
         const url_script = "https://script.google.com/macros/s/AKfycbyMrz968e8ilKfiIDcfcjyU5k5n3BBrb-LKR4mguzuksJ71w_M35U4eiMaDrAYsldacyg/exec";
         
-        // --- AQUÍ PONES TUS CÓDIGOS VÁLIDOS ---
+        // Aquí puedes añadir más códigos separados por comas
         const codigosValidos = ["SOMBRA2026", "NODO01", "ALPHA"];
-        // --------------------------------------
 
         if (codigosValidos.includes(code)) {
             await fetch(url_script, {
